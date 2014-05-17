@@ -1,42 +1,19 @@
-﻿Build started 5/16/2014 10:01:32 AM.
-     1>Project "D:\comp\comp\comp.vcxproj" on node 2 (Build target(s)).
+﻿Build started 5/16/2014 2:48:35 PM.
+     1>Project "C:\Users\hossam\Documents\GitHub\comp\comp\comp\comp.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /AI"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\\" /AI"C:\Program Files\Windows Kits\8.0\References\CommonConfiguration\Neutral" /AI"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\\" /Zi /clr /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /TP /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\mscorlib.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xml.dll" /analyze- /errorReport:prompt /clr:nostdlib ..\lex.yy.cc ..\yacc.cpp Symbol_Table.cpp
-         lex.yy.cc
-     1>C:\Users\Hasan\Documents\GitHub\compiler\comp\lex.l(102): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 C:\Program Files\Microsoft Visual Studio 11.0\VC\include\string.h(110) : see declaration of 'strcpy'
-     1>C:\Users\Hasan\Documents\GitHub\compiler\comp\lex.l(114): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>lex.yy.cc(738): warning C4102: 'find_rule' : unreferenced label
-     1>lex.yy.cc(1769): warning C4273: 'isatty' : inconsistent dll linkage
-                 C:\Program Files\Microsoft Visual Studio 11.0\VC\include\io.h(311) : see previous definition of 'isatty'
-         yacc.cpp
-     1>D:\comp\yacc.y(36): warning C4018: '<' : signed/unsigned mismatch
-     1>yacc.cpp(394): warning C4273: 'malloc' : inconsistent dll linkage
-                 C:\Program Files\Microsoft Visual Studio 11.0\VC\include\stdlib.h(621) : see previous definition of 'malloc'
-     1>yacc.cpp(401): warning C4273: 'free' : inconsistent dll linkage
-                 C:\Program Files\Microsoft Visual Studio 11.0\VC\include\stdlib.h(620) : see previous definition of 'free'
-     1>yacc.cpp(1638): warning C4065: switch statement contains 'default' but no 'case' labels
-         Symbol_Table.cpp
-     1>Symbol_Table.cpp(251): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 C:\Program Files\Microsoft Visual Studio 11.0\VC\include\string.h(115) : see declaration of 'strcat'
-     1>Symbol_Table.cpp(266): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 C:\Program Files\Microsoft Visual Studio 11.0\VC\include\string.h(115) : see declaration of 'strcat'
-     1>Symbol_Table.cpp(355): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 C:\Program Files\Microsoft Visual Studio 11.0\VC\include\string.h(115) : see declaration of 'strcat'
-     1>Symbol_Table.cpp(365): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 C:\Program Files\Microsoft Visual Studio 11.0\VC\include\string.h(115) : see declaration of 'strcat'
-     1>Symbol_Table.cpp(374): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 C:\Program Files\Microsoft Visual Studio 11.0\VC\include\string.h(115) : see declaration of 'strcat'
+         C:\Program Files\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /AI"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\\" /AI"C:\Program Files\Windows Kits\8.0\References\CommonConfiguration\Neutral" /AI"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\\" /Zi /clr /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /TP /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\mscorlib.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xml.dll" /analyze- /errorReport:prompt /clr:nostdlib a.cpp b.cpp
+         a.cpp
+         b.cpp
+     1>c:\users\hossam\documents\github\comp\comp\comp\b.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
          Generating Code...
-     1>d:\comp\comp\symbol_table.cpp(119): warning C4715: 'Symbol_Table::getVariableFromInterface' : not all control paths return a value
-     1>d:\comp\comp\symbol_table.cpp(146): warning C4715: 'Symbol_Table::getVariableSpecFromInterface' : not all control paths return a value
-     1>d:\comp\comp\symbol_table.cpp(166): warning C4715: 'Symbol_Table::getVariableNameFromInterface' : not all control paths return a value
        Link:
-         C:\Program Files\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\comp\Debug\comp.exe" /INCREMENTAL /NOLOGO /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\comp\Debug\comp.pdb" /ASSEMBLYDEBUG /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /FIXED:NO /NXCOMPAT /MACHINE:X86 Debug\app.res
+         C:\Program Files\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\hossam\Documents\GitHub\comp\comp\Debug\comp.exe" /INCREMENTAL /NOLOGO /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\hossam\Documents\GitHub\comp\comp\Debug\comp.pdb" /ASSEMBLYDEBUG /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /FIXED:NO /NXCOMPAT /MACHINE:X86 Debug\app.res
          Debug\lex.yy.obj
          Debug\yacc.obj
+         Debug\a.obj
          Debug\AssemblyInfo.obj
          Debug\AST.obj
+         Debug\b.obj
          Debug\code_generation1.obj
          Debug\comp.obj
          Debug\ErrorRecovery.obj
@@ -53,9 +30,9 @@
          Debug\Variable.obj
          "Debug\.NETFramework,Version=v4.5.AssemblyAttributes.obj"
      1>LINK : warning LNK4067: ambiguous entry point; selected 'mainCRTStartup'
-         comp.vcxproj -> D:\comp\Debug\comp.exe
-     1>Done Building Project "D:\comp\comp\comp.vcxproj" (Build target(s)).
+         comp.vcxproj -> C:\Users\hossam\Documents\GitHub\comp\comp\Debug\comp.exe
+     1>Done Building Project "C:\Users\hossam\Documents\GitHub\comp\comp\comp\comp.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:09.41
+Time Elapsed 00:00:09.93

@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Variable.h"
+#include "Symbol_Table.h"
 #include <string>
 
 Variable::Variable(){
@@ -66,4 +67,19 @@ void Variable::setoffset(int x)
 int Variable::getoffset()
 {
 	return this->offset;
+}
+int Variable::get_size(Symbol_Table *s){
+	if(type<6)
+		return 4;
+	else
+	{
+		int size=0;
+		char* inhertance=(char*)type1;
+		while(inhertance){
+			Interface* inhert_interface=(Interface*)s->currScope->m->lookup(inhertance);
+			size+=inhert_interface->get_size()+4;
+			inhertance=inhert_interface->getInheritedType()->getName();
+		}
+		return size;
+	}
 }

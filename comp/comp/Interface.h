@@ -9,6 +9,7 @@ private:
 	vector<string> implementation_list;
 	Scope * scope;
 	int type;
+	int size;
 public:
 	Interface();
 	~Interface();
@@ -20,5 +21,7 @@ public:
 	Scope * getScope();
 	void settype(int  Type);
 	int  gettypee();
+	int get_size();
+	void set_size(int size);
 };
 

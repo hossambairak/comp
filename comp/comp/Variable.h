@@ -1,5 +1,6 @@
 #pragma once
 #include "Defs.h"
+#include "Symbol_Table.h"
 enum AccessSpecifier{privateAceess, protectedAccess, publicAccess};
 class DataModifier{
 public:
@@ -37,7 +38,8 @@ public:
 	int getSpecifier();
 	void setoffset(int s);
 	int getoffset();
+	int get_size(Symbol_Table *s);
 	void setDataModifier(DataModifier * dm);
-	DataModifier * getDataModifier();
+	DataModifier * getDataModifier(Symbol_Table* s);
 };
 

@@ -33,3 +33,9 @@ int Interface::gettypee()
 {
 	return this->type;
 }
+void Interface::set_size(int size){
+	this->size=size;
+}
+int Interface::get_size(){
+	return this->size;
+}
