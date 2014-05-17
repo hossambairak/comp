@@ -198,13 +198,7 @@ class_interface:
 class_interface_header: 
 	AT_INTERFACE IDENTIFIER	SEMI_COLUMN IDENTIFIER	{
 		i=1;
-
-		
 		datamember_offset=0;
-
-
-		datamember_offset=0;
-
 		$<r.str>$=$<r.str>2;
 		if(s->check_Interface($<r.str>2)!=0) 
 			Er->errQ->enqueue(yylval.r.myLineNo,yylval.r.myColno,"ERROR","Redefine Interface"); 
@@ -364,7 +358,7 @@ visibility_specification:
 variable_declaration:
 	type IDENTIFIER	SEMI_COMA									
 			{
-			int offset;
+				int offset;
  				if(i==1)
  					offset=datamember_offset++;
  				else
@@ -380,13 +374,10 @@ variable_declaration:
 					if(s->insertVariableInCurrentScope($<r.str>2,t,visability,offset,$<tn>$) == 0) 
 						Er->errQ->enqueue(yylval.r.myLineNo,yylval.r.myColno,"ERROR","Variable redefine");
 				}
-				Variable *v=(Variable*)$<tn>$->item;
-				cout<<v->getoffset();
 				$<tn>$->expectedType=$<tn>1->expectedType;}
 
 	|type IDENTIFIER error					{yyclearin;Er->errQ->enqueue(yylval.r.myLineNo,yylval.r.myColno,"ERROR",";"); $<tn>$ = ast->createNode(0,0, variable_declaration_node);
 											$<tn>$->expectedType=$<tn>1->expectedType;}
-
 
 	|type IDENTIFIER EQUAL simple_expr SEMI_COMA 		{
 		int offset;
@@ -656,18 +647,10 @@ p_type:
 
 method_selector:
 
-	IDENTIFIER SEMI_COLUMN		{Scope *new_scope = new Scope();new_scope->parent=s->currScope;s->currScope=new_scope;} parameter_list	{i=3;s->currScope=s->currScope->parent;$<r.str>$=$<r.str>1;cout<<"method_selector:IDENTIFIER SEMI_COLUMN parameter_list\n";
+	IDENTIFIER SEMI_COLUMN	 parameter_list	{i=3;$<r.str>$=$<r.str>1;cout<<"method_selector:IDENTIFIER SEMI_COLUMN parameter_list\n";
 								$<tn>$ = ast->createNode(0,0, method_selector_Node);			}
 	|IDENTIFIER									{$<r.str>$=$<r.str>1;cout<<"method_selector:IDENTIFIER \n";
 												$<tn>$ = ast->createNode(0,0, method_selector_Node);		}
-
-	IDENTIFIER SEMI_COLUMN		{$<r.str>$=$<r.str>1;Scope *new_scope = new Scope();new_scope->parent=s->currScope;s->currScope=new_scope;} parameter_list	{i=3;s->currScope=s->currScope->parent;$<r.str>$=$<r.str>1;cout<<"method_selector:IDENTIFIER SEMI_COLUMN parameter_list\n";
-								$<tn>$ = ast->createNode(0,0, method_selector_Node);}
-	|IDENTIFIER									{
-												$<r.str>$=$<r.str>1;
-												$<r.str>$=$<r.str>1;cout<<"method_selector:IDENTIFIER \n";
-												$<tn>$ = ast->createNode(0,0, method_selector_Node);}
-
 ;
 
 
@@ -683,16 +666,20 @@ parameter_list:	parameter_list	SEMI_COLUMN	parameter						{cout<<"parameter_list
 				|parameter													{cout<<"parameter_list: parameter\n";
 																			$<tn>$ =ast->createNode($<tn>1,0, paramListNode);}
 ;
-
-
 parameter:  p_type IDENTIFIER								 {
 	add_param($<r.type>1);
 	Type t=static_cast<Type>($<r.type>1);
-	if(s->insertVariableInCurrentScope($<r.str>2,t,1) == 0) 
-		cout<<"error redefine variable";
-
-	cout<<"parameter: p_type IDENTIFIER\n";	$<tn>$ = ast->createNode($<tn>1,0, parameter_Node);	$<tn>$->expectedType=$<tn>1->expectedType;
-
+	int offset=function_offset++;
+	$<tn>$ = ast->createNode($<tn>1,0, parameter_Node);
+	if($<r.type>1==6){
+	if(s->insertVariableInCurrentScope($<r.str>2,$<r.type1>1,visability,offset,$<tn>$) == 0)	
+		Er->errQ->enqueue(yylval.r.myLineNo,yylval.r.myColno,"ERROR","Variable redefine");
+	}
+	else{
+		if(s->insertVariableInCurrentScope($<r.str>2,t,visability,offset,$<tn>$) == 0) 
+			Er->errQ->enqueue(yylval.r.myLineNo,yylval.r.myColno,"ERROR","Variable redefine");
+	}
+	cout<<"parameter: p_type IDENTIFIER\n";	$<tn>$->expectedType=$<tn>1->expectedType;
 	param_list1.push_back($<r.str>2);
 	}
 

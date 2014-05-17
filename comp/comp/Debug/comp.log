@@ -1,10 +1,21 @@
-﻿Build started 5/16/2014 2:48:35 PM.
+﻿Build started 5/17/2014 5:58:00 AM.
      1>Project "C:\Users\hossam\Documents\GitHub\comp\comp\comp\comp.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /AI"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\\" /AI"C:\Program Files\Windows Kits\8.0\References\CommonConfiguration\Neutral" /AI"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\\" /Zi /clr /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /TP /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\mscorlib.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xml.dll" /analyze- /errorReport:prompt /clr:nostdlib a.cpp b.cpp
-         a.cpp
-         b.cpp
-     1>c:\users\hossam\documents\github\comp\comp\comp\b.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+         C:\Program Files\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /AI"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\\" /AI"C:\Program Files\Windows Kits\8.0\References\CommonConfiguration\Neutral" /AI"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\\" /Zi /clr /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /TP /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\mscorlib.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xml.dll" /analyze- /errorReport:prompt /clr:nostdlib ..\lex.yy.cc ..\yacc.cpp
+         lex.yy.cc
+     1>C:\Users\Hasan\Documents\GitHub\compiler\comp\lex.l(102): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files\Microsoft Visual Studio 11.0\VC\include\string.h(110) : see declaration of 'strcpy'
+     1>C:\Users\Hasan\Documents\GitHub\compiler\comp\lex.l(114): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>lex.yy.cc(738): warning C4102: 'find_rule' : unreferenced label
+     1>lex.yy.cc(1769): warning C4273: 'isatty' : inconsistent dll linkage
+                 C:\Program Files\Microsoft Visual Studio 11.0\VC\include\io.h(311) : see previous definition of 'isatty'
+         yacc.cpp
+     1>C:\Users\hossam\Documents\GitHub\comp\comp\yacc.y(36): warning C4018: '<' : signed/unsigned mismatch
+     1>yacc.cpp(394): warning C4273: 'malloc' : inconsistent dll linkage
+                 C:\Program Files\Microsoft Visual Studio 11.0\VC\include\stdlib.h(621) : see previous definition of 'malloc'
+     1>yacc.cpp(401): warning C4273: 'free' : inconsistent dll linkage
+                 C:\Program Files\Microsoft Visual Studio 11.0\VC\include\stdlib.h(620) : see previous definition of 'free'
+     1>yacc.cpp(1623): warning C4065: switch statement contains 'default' but no 'case' labels
          Generating Code...
        Link:
          C:\Program Files\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\hossam\Documents\GitHub\comp\comp\Debug\comp.exe" /INCREMENTAL /NOLOGO /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\hossam\Documents\GitHub\comp\comp\Debug\comp.pdb" /ASSEMBLYDEBUG /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /FIXED:NO /NXCOMPAT /MACHINE:X86 Debug\app.res
@@ -35,4 +46,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:09.93
+Time Elapsed 00:00:05.44
