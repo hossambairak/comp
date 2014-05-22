@@ -72,12 +72,6 @@
     <ClInclude Include="code_generation1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="a.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="b.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc">
@@ -137,12 +131,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="code_generation1.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="a.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="b.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

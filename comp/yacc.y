@@ -788,12 +788,12 @@ class_implementation_definition:
 	s->currScope=s->currScope->parent;
 	Type t=static_cast<Type>($<r.type>2);
 	if($<r.type>1==6){
-		if(s->insertFunctionInCurrentScope($<r.str>1,$<r.type1>1,param_list,$<tn>$,function_offset) == 0) 
+		if(s->insertFunctionInCurrentScope($<r.str>1,$<r.type1>1,param_list,$<tn>2,function_offset) == 0) 
 			Er->errQ->enqueue(yylval.r.myLineNo,yylval.r.myColno,"ERROR","Redefine Method");
 	} 
 	else
 	{
-		if(s->insertFunctionInCurrentScope($<r.str>1,t,param_list,$<tn>$,function_offset) == 0) 
+		if(s->insertFunctionInCurrentScope($<r.str>1,t,param_list,$<tn>2,function_offset) == 0) 
 			Er->errQ->enqueue(yylval.r.myLineNo,yylval.r.myColno,"ERROR","Redefine Method");
 	}
 	cout<<"class_implementation_definition: class_implementation_definition_header block_body";
@@ -819,12 +819,12 @@ instance_implementation_definition:
 		s->currScope=s->currScope->parent;
 		Type t=static_cast<Type>($<r.type>2);
 		if($<r.type>1==6){
-			if(s->insertFunctionInCurrentScope($<r.str>1,$<r.type1>1,param_list,$<tn>$,function_offset) == 0) 
+			if(s->insertFunctionInCurrentScope($<r.str>1,$<r.type1>1,param_list,$<tn>2,function_offset) == 0) 
 				Er->errQ->enqueue(yylval.r.myLineNo,yylval.r.myColno,"ERROR","Redefine Method");
 		} 
 		else
 		{
-			if(s->insertFunctionInCurrentScope($<r.str>1,t,param_list,$<tn>$,function_offset) == 0) 
+			if(s->insertFunctionInCurrentScope($<r.str>1,t,param_list,$<tn>2,function_offset) == 0) 
 				Er->errQ->enqueue(yylval.r.myLineNo,yylval.r.myColno,"ERROR","Redefine Method");
 		}
 		s->insert_scope($<r.str>1,s->currScope);
@@ -868,8 +868,6 @@ loop_statement:
 for_loop:
 	for_loop_header statement			{$<tn>$=ast->createNode($<tn>1,$<tn>2,ForNode);cout<<"for_loop: for_loop_header statement\n";}
 ;
-
-
 
 for_loop_header:
 	FOR OPEN_P for_initializer SEMI_COMA logic_expr SEMI_COMA expr CLOSE_P {	
@@ -980,11 +978,14 @@ assign_expr:
 long_id:
 	long_id DOT IDENTIFIER				{
 		var.push($<r.str>3);				
-		$<tn>$ = ast->addToLastRight($<tn>1,ast->createNode(0,0,longidNode));
-		cout<<"long_id: long_id.IDENTIFIER\n";}
-	//|long_id DOT message_call			{cout<<"long_id: long_i d.IDENTIFIER\n";}
-	|message_call						{$<tn>$=$<tn>1;cout<<"long_id: long_id.message_call\n";}
-	|IDENTIFIER		 %prec long_id_prec{$<tn>$=ast->createNode(0,0,IdentNode);
+		$<tn>$ = ast->addToLastRight($<tn>1,ast->createNode(0,0,IdentNode));
+		cout<<"long_id: long_id.IDENTIFIER\n";
+	}
+	|message_call						{
+		$<tn>$=$<tn>1;cout<<"long_id: long_id.message_call\n";
+	}
+	|IDENTIFIER		 %prec long_id_prec{
+		$<tn>$=ast->createNode(0,0,IdentNode);
 		if(strcmp(lexer->YYText(),".")==0) 
 			var.push($<r.str>1);
 		if(s->getVariableFromCurrentScope($<r.str>1)==0) {
@@ -994,39 +995,25 @@ long_id:
 ;
 
 
-
-
-
 simple_expr:
 	//message_call				{cout<<"simple_expr:message_call\n";}
 	STRING_VAL					{$<tn>$=ast->createNode(0,0,stringNode);    $<tn>$->expectedType=stringtype;
 									cout<<"simple_expr:STRING_VAL\n";
-									$<tn>$->item=(void *)yylval.r.str;}
-	
-	
-
-	
+									$<tn>$->item=(void *)yylval.r.str;}	
 	|INT_VAL					{$<tn>$=ast->createNode(0,0,intNode);	 $<tn>$->expectedType=inttype;   $<tn>$->item=(void *)yylval.r.i;
 								 cout<<" \n\n\n\n\n\n\n\n\n"<<(int)$<tn>$->item<<" \n\n\n\n\n\n\n\n\n";
 									}
-
-
-
-
 
 	|FLOAT_VAL					{$<tn>$=ast->createNode(0,0,floatNode);cout<<"simple_expr:FLOAT_VAL\n";	$<tn>$->expectedType=floattype;
 								// $<tn>$->item=(void *)yylval.r.f;
 								}
 	STRING_VAL					{$<tn>$=ast->createNode(0,0,stringNode);  
 								cout<<"simple_expr:STRING_VAL\n";}
-
-
-
 	|CHAR_VAL					{$<tn>$=ast->createNode(0,0,CharNode);cout<<"simple_expr:CHAR_VAL\n";	$<tn>$->expectedType=chartype;
 								 $<tn>$->item=(void *)yylval.r.c;}
 	//|IDENTIFIER			%prec expr_1	{cout<<"simple_expr:IDENTIFIER\n";}
 	|long_id					{
-		
+		$<tn>$=$<tn>1;
 		char *type;
 		bool ok1=true;
 		if(s->getVariableNameFromInterface("I","l")=="##")

@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Method.h"
+#include "AST.h"
 #include "Defs.h"
 #include <string>
 Method::Method(){
@@ -80,4 +81,7 @@ char* Method::get_class_name(){
 }
 void Method::set_class_name(char* name){
 	this->class_name=name;
+}
+Scope* Method::getScope(){
+	return this->scope;
 }

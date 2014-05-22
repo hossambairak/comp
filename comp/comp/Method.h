@@ -1,6 +1,7 @@
 #pragma once
 #include "Defs.h"
 #include "Scope.h"
+#include "AST.h"
 #include <vector>
 class Method
 {
