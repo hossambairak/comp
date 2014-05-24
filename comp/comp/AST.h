@@ -16,7 +16,7 @@ enum Node {
 		,EnumNode,structNode,arrayoneNode,arraybodyNode,ArrayNNode,ArrayNMultiNode,array_body2Node,typeNode,simple_type_INT
 		,simple_type_CHAR,simple_typeFLOAT,simple_type_NSSTRING,simple_type_VOID,complex_type,interface_declaration_list_Node,
 		class_method_declaration,instance_method_declaration,p_typeNode,method_selector_Node,parameter_Node,paramListNode
-		,SmpExpPlusNode,SmpExpMinusNode,SmpExpMultiNode,SmpExpDivNode,LESS_THAN_Node,MORE_THAN_Node,LESS_EQUAL_Node,MORE_EQUAL_Node,EQUAL_EQUAL_Node,NOT_EQUAL_Node,AND_AND_Node,OR_OR_pNode,if_Node,if_else_Node};
+		,SmpExpPlusNode,SmpExpMinusNode,SmpExpMultiNode,SmpExpDivNode,LESS_THAN_Node,MORE_THAN_Node,LESS_EQUAL_Node,MORE_EQUAL_Node,EQUAL_EQUAL_Node,NOT_EQUAL_Node,AND_AND_Node,OR_OR_pNode,if_Node,if_else_Node,NSLogNode};
 
 enum ExpectedType {noType, inttype, floattype, stringtype,booltype ,chartype,voidtype,complextype};
 

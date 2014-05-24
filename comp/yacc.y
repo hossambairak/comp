@@ -1122,7 +1122,7 @@ if_header:
 	|IF error logic_expr CLOSE_P		{Er->errQ->enqueue(yylval.r.myLineNo,yylval.r.myColno,"ERROR","(");}
 ;
 message_call:
-	OPEN_ARR sender message CLOSE_ARR		{$<tn>$=ast->createNode($<tn>2,$<tn>3,MsgCalNode);cout<<"message_call: OPEN_ARR sender message CLOSE_ARR\n";}
+	OPEN_ARR sender message CLOSE_ARR		{if(strcmp($<r.str>3,"NSLog")) $<tn>$ = ast->createNode($<tn>3,0,NSLogNode); else $<tn>$=ast->createNode($<tn>2,$<tn>3,MsgCalNode);cout<<"message_call: OPEN_ARR sender message CLOSE_ARR\n";}
 ;
 sender:
 	message_call				{$<tn>$ = ast->createNode($<tn>1,0,SndrNode);cout<<"sender: message_call\n";}
@@ -1130,7 +1130,7 @@ sender:
 ;
 message:
 	IDENTIFIER								{cout<<"message: IDENTIFIER\n";}
-	|IDENTIFIER SEMI_COLUMN argument_list	{$<tn>$ = ast->createNode($<tn>3,0,MsgNode);cout<<"message: IDENTIFIER SEMI_COLUMN argument_list\n";}
+	|IDENTIFIER SEMI_COLUMN argument_list	{$<r.str>$=$<r.str>1;$<tn>$ = ast->createNode($<tn>3,0,MsgNode);cout<<"message: IDENTIFIER SEMI_COLUMN argument_list\n";}
 ;
 argument_list:
 	argument_list argument					{$<tn>$ = ast->addToLastRight($<tn>1,ast->createNode($<tn>2,0,argListNode));cout<<"argument_list: argument_list argument\n";}
