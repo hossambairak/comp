@@ -23,10 +23,12 @@ enum ExpectedType {noType, inttype, floattype, stringtype,booltype ,chartype,voi
 
 class TreeNode{
 public:
+	void set_item(TreeNode* tn);
 	TreeNode * left;
 	TreeNode * right;
 	Node nodeType;
 	ExpectedType expectedType;
+	char complexType[50];
 	void * item;
 	int lineNo;
 	int colNo;

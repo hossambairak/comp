@@ -23,8 +23,19 @@ void hash_tabel::insert(char* s,void* type)
 {
 	int index=hash(s)%size_hash;
 	Symbol *t=new Symbol();
-	table[index]=new Symbol(s,type,t);
-	table[index]->next=0;
+
+	if((Symbol*)table[index]!=0)
+	{
+		Symbol *temp=table[index]->next;
+		while(temp)
+			temp=temp->next;
+		temp=new Symbol(s,type,t);
+	}
+	else
+	{
+		table[index]=new Symbol(s,type,t);
+		table[index]->next=0;
+	}
 }
 void hash_tabel::pop(char* s)
 {

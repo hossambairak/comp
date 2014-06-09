@@ -20,9 +20,11 @@ public:
 	Scope * rootScope;
 	Variable * insertVariableInCurrentScope(char* name,Type  t,int visability);
 	Variable * insertVariableInCurrentScope(char* name,Type  t,int visability,int offset,TreeNode* tn);
-	Variable *insertVariableInCurrentScope(char* name,void* type1,int visability);
-	Variable *insertVariableInCurrentScope(char* name,void* type1,int visability,int offset,TreeNode *tn);
+	Variable *insertVariableInCurrentScope(char* name,char* type1,int visability);
+	Variable *insertVariableInCurrentScope(char* name,char* type1,int visability,int offset,TreeNode *tn);
 	Variable * getVariableFromCurrentScope(char* name);
+	Variable * getVariableFromInterface(char* name);
+	Variable * getVariableFromInhertInterface(char* Interface_name,char* Data_name);
 	Interface* getInterface(char* name);
 	Variable* getVariableFromInterface(char* Interface_name,char* Data_name);
 	int getVariableSpecFromInterface(char* Interface_name,char* Data_name);

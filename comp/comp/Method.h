@@ -13,7 +13,7 @@ private:
 	char* class_name;
 	int size;
 	vector<string> parameter_list; 
-	void *item;
+	TreeNode *item;
 public:
 
 	Method();
@@ -30,7 +30,7 @@ public:
 	vector<string> getParameter();
 	bool check_param_list(vector<string> params);
 	void* get_item();
-	void set_item(void* item);
+	void set_item(TreeNode* item);
 	void set_size(int size);
 	int get_size();
 	char *get_class_name();

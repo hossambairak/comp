@@ -21,7 +21,17 @@ AST::AST(void)
 AST::~AST(void)
 {
 }
-
+void TreeNode::set_item(TreeNode* tn){
+	//this->expectedType=tn->expectedType;
+	AST a;
+	this->item=new TreeNode();
+	this->left->set_item(tn->left);
+	this->right=tn->right;
+	this->currST=tn->currST;
+	//this->item=tn->item;
+	this->nodeType=tn->nodeType;
+	
+}
 TreeNode * AST::createNode(TreeNode * l, TreeNode* r, Node nt){
 	TreeNode * tn = new TreeNode();
 	if(nt==15)

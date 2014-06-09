@@ -17,14 +17,14 @@ char* Variable::getName(){
 void Variable::setType(Type t){
 	this->type = t;
 }
-void Variable::settype1(void* t)
+void Variable::settype1(char* t)
 {
 	this->type1=t;
 }
 Type Variable::getType(){
 	return this->type;
 }
-void* Variable::getType1()
+char* Variable::getType1()
 {
 	return this->type1;
 }

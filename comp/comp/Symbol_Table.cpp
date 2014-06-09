@@ -26,6 +26,7 @@ Variable * Symbol_Table::insertVariableInCurrentScope(char* name, Type t,int vis
 		v = new Variable();
 		v->setName(name);
 		v->setType(t);
+		v->settype1("\0");
 		v->setsSpecifier(visability);
 		this->currScope->m->insert(name, v);
 		return v;
@@ -41,6 +42,7 @@ Variable * Symbol_Table::insertVariableInCurrentScope(char* name, Type t,int vis
 		v = new Variable();
 		v->setName(name);
 		v->setType(t);
+		v->settype1("\0");
 		v->setsSpecifier(visability);
 		v->setoffset(offset);
 		if(t==intType)
@@ -59,7 +61,7 @@ Variable * Symbol_Table::insertVariableInCurrentScope(char* name, Type t,int vis
 		return v;
 	}
 }
-Variable * Symbol_Table::insertVariableInCurrentScope(char* name,void* type1,int visability){
+Variable * Symbol_Table::insertVariableInCurrentScope(char* name,char* type1,int visability){
 	Variable * v = this->getVariableFromCurrentScope(name);
 	if(v){
 		return 0;//item is exist previously
@@ -68,13 +70,14 @@ Variable * Symbol_Table::insertVariableInCurrentScope(char* name,void* type1,int
 
 		v = new Variable();
 		v->setName(name);
+		v->setType(complexType);
 		v->settype1(type1);
 		v->setsSpecifier(visability);
 		this->currScope->m->insert(name, v);
 		return v;
 	}
 }
-Variable * Symbol_Table::insertVariableInCurrentScope(char* name,void* type1,int visability,int offset,TreeNode *tn){
+Variable * Symbol_Table::insertVariableInCurrentScope(char* name,char* type1,int visability,int offset,TreeNode *tn){
 	Variable * v = this->getVariableFromCurrentScope(name);
 	if(v){
 		return 0;//item is exist previously
@@ -83,6 +86,7 @@ Variable * Symbol_Table::insertVariableInCurrentScope(char* name,void* type1,int
 
 		v = new Variable();
 		v->setName(name);
+		v->setType(complexType);
 		v->settype1(type1);
 		v->setsSpecifier(visability);
 		v->setoffset(offset);
@@ -95,7 +99,7 @@ Variable * Symbol_Table::insertVariableInCurrentScope(char* name,void* type1,int
 }
 Variable * Symbol_Table::getVariableFromCurrentScope(char* name){
 	Variable * v = (Variable*)this->currScope->m->lookup(name);
-	if(!v){
+	if(v){
 		Scope * temp = this->currScope->parent;
 		while(temp && !v){
 			v = (Variable*)temp->m->lookup(name);
@@ -106,16 +110,36 @@ Variable * Symbol_Table::getVariableFromCurrentScope(char* name){
 }
 Variable* Symbol_Table::getVariableFromInterface(char* Interface_name,char* Data_name)
 {
-	Interface * v = (Interface*)this->currScope->m->lookup(Interface_name);
-	if(!v){
+	Scope* scope=this->currScope;
+	while(scope->parent)
+		scope=scope->parent;
+	Interface * v = (Interface*)scope->m->lookup(Interface_name);
+	if(v){
+		Variable* var=(Variable*)v->getScope()->m->lookup(Data_name);
+		return var;
+	}
+	else 
+		return 0;
+}
+Variable* Symbol_Table::getVariableFromInhertInterface(char* Interface_name,char* Data_name)
+{
+	Scope* scope=this->currScope;
+	while(scope->parent)
+		scope=scope->parent;
+	Interface * v = (Interface*)scope->m->lookup(Interface_name);
+	if(v){
 		Scope * temp = this->currScope->parent;
 		while(temp->parent){
 			temp = temp->parent;
 		}
 		v = (Interface*)temp->m->lookup(Interface_name);
 		Variable* var=(Variable*)v->getScope()->m->lookup(Data_name);
-		return var;
+		if(var)
+			return var;
+		else 
+			return 0;
 	}
+	return 0;
 }
 int Symbol_Table::getVariableSpecFromInterface(char* Interface_name,char* Data_name)
 {
@@ -239,12 +263,12 @@ void Symbol_Table::insert_scope(char *name,Scope *scope){
 	Interface * t = (Interface*)this->rootScope->m->lookup(name);
 	if(t)
 	{
-		t = new Interface();
-		t->setName(t->getName());
-		t->setInheritedType(t->getInheritedType());
-		t->setScope(scope);
+		Interface * v = new Interface();
+		v->setName(t->getName());
+		v->setInheritedType(t->getInheritedType());
+		v->setScope(scope);
 		this->rootScope->m->pop(name);
-		this->rootScope->m->insert(name, t);
+		this->rootScope->m->insert(name, v);
 	}
 }
 Implementation * Symbol_Table::insertImplementationInCurrentScope(char* name){
@@ -277,26 +301,26 @@ Implementation * Symbol_Table::insertImplementationInCurrentScope(char* name,cha
 	return 0;
 }
 void Symbol_Table::insert_scope1(char *name,Scope *scope){
-	Implementation * t = (Implementation*)this->currScope->m->lookup(name);
+	Implementation * t = (Implementation*)this->rootScope->m->lookup(name);
 	if(t)
 	{
-		t = new Implementation();
-		t->setName(t->getName());
-		t->setInheritedType(t->getInheritedType());
-		t->setScope(scope);
+		Implementation * v = new Implementation();
+		v->setName(t->getName());
+		v->setInheritedType(t->getInheritedType());
+		v->setScope(scope);
 		this->rootScope->m->pop(name);
-		this->rootScope->m->insert(name, t);
+		this->rootScope->m->insert(name, v);
 	}
 }
 void Symbol_Table::insert_scope2(char *name,Scope *scope){
-	Method * t = (Method*)this->currScope->m->lookup(name);
+	Method * t = (Method*)this->rootScope->m->lookup(name);
 	if(t)
 	{
-		t = new Method();
-		t->setName(t->getName());
-		t->setScope(scope);
+		Method * v = new Method();
+		v->setName(t->getName());
+		v->setScope(scope);
 		this->rootScope->m->pop(name);
-		this->rootScope->m->insert(name, t);
+		this->rootScope->m->insert(name, v);
 	}
 }
 Interface * Symbol_Table::insertInterfaceInCurrentScope(char* name){

@@ -16,7 +16,7 @@ private:
 	AccessSpecifier accessSpecifier;
 	Type type;
 	int offset;
-	void* type1;
+	char* type1;
 	void* value;
 	int kind;
 public:
@@ -26,9 +26,9 @@ public:
 	void setName(char* n);
 	char* getName();
 	void setType(Type t);
-	void settype1(void* t);
+	void settype1(char* t);
 	Type getType();	
-	void* getType1();
+	char* getType1();
 	void* getValue();
 	void setValue(void* value);
 	void setKind(int kind);

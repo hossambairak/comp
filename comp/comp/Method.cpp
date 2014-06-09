@@ -66,9 +66,14 @@ void* Method::get_item()
 {
 	return this->item;
 }
-void Method::set_item(void* item1)
+void Method::set_item(TreeNode* tn)
 {
-	item=item1;
+	item=new TreeNode();
+	item->left=tn->left;
+	item->right=tn->right;
+	item->currST=tn->currST;
+	//this->item=tn->item;
+	item->nodeType=tn->nodeType;
 }
 void Method::set_size(int size){
 	this->size=size;
