@@ -313,14 +313,15 @@ void Symbol_Table::insert_scope1(char *name,Scope *scope){
 	}
 }
 void Symbol_Table::insert_scope2(char *name,Scope *scope){
-	Method * t = (Method*)this->rootScope->m->lookup(name);
+	Method * t = (Method*)this->currScope->m->lookup(name);
 	if(t)
 	{
 		Method * v = new Method();
 		v->setName(t->getName());
+		v->set_item(t->get_item());
 		v->setScope(scope);
-		this->rootScope->m->pop(name);
-		this->rootScope->m->insert(name, v);
+		this->currScope->m->pop(name);
+		this->currScope->m->insert(name, v);
 	}
 }
 Interface * Symbol_Table::insertInterfaceInCurrentScope(char* name){

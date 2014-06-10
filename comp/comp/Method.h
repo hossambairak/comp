@@ -29,7 +29,7 @@ public:
 	void setPrameter(vector<string> params);
 	vector<string> getParameter();
 	bool check_param_list(vector<string> params);
-	void* get_item();
+	TreeNode* get_item();
 	void set_item(TreeNode* item);
 	void set_size(int size);
 	int get_size();

@@ -62,7 +62,7 @@ bool Method::check_param_list(vector<string> params)
 	return false;
 }
 
-void* Method::get_item()
+TreeNode* Method::get_item()
 {
 	return this->item;
 }

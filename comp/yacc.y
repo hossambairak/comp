@@ -591,7 +591,6 @@ p_type:
 ;
 
 method_selector:
-
 	IDENTIFIER SEMI_COLUMN	 parameter_list	{i=3;$<r.str>$=$<r.str>1;cout<<"method_selector:IDENTIFIER SEMI_COLUMN parameter_list\n";
 											$<tn>$ = ast->createNode(0,0, method_selector_Node);			}
 	|IDENTIFIER								{$<r.str>$=$<r.str>1;cout<<"method_selector:IDENTIFIER \n";
@@ -717,8 +716,8 @@ class_implementation_definition:
 	$<tn>$=ast->createNode($<tn>1,$<tn>2,ClsImpDefNode);i=2;
 	Scope* temp=s->currScope;
 	insert_param();
-	s->currScope=s->currScope->parent;
 	Type t=static_cast<Type>($<r.type>2);
+	s->currScope=s->currScope->parent;
 	if($<r.type>1==6){
 		if(s->insertFunctionInCurrentScope($<r.str>1,$<r.type1>1,param_list,$<tn>2,function_offset) == 0) 
 			Er->errQ->enqueue(yylval.r.myLineNo,yylval.r.myColno,"ERROR","Redefine Method");
@@ -728,10 +727,10 @@ class_implementation_definition:
 		if(s->insertFunctionInCurrentScope($<r.str>1,t,param_list,$<tn>2,function_offset) == 0) 
 			Er->errQ->enqueue(yylval.r.myLineNo,yylval.r.myColno,"ERROR","Redefine Method");
 	}
+	s->insert_scope2($<r.str>1,temp);
 	param_list1.clear();
 	param_list.clear();
 	cout<<"class_implementation_definition: class_implementation_definition_header block_body";
-	s->insert_scope($<r.str>1,temp);
 	}
 
 ;
@@ -744,25 +743,25 @@ class_implementation_definition_header:
 										}
 										$<r.type1>$=$<r.type1>2;
 										Scope *new_scope = new Scope();new_scope->parent=s->currScope;s->currScope=new_scope; 
-										
 										$<tn>$=ast->createNode($<tn>2,$<tn>3,ClsImpDefHdrNode);cout<<"class_implementation_definition_header: PLUS p_type method_selector\n";}
 	|PLUS method_selector				{if(strcmp($<r.str>2,"main")==0){
 											strcat(main_interface,Interface_name);
 											cout<<Interface_name<<endl;
 											cout<<main_interface<<endl;
 										}
+										 Scope *new_scope = new Scope();new_scope->parent=s->currScope;s->currScope=new_scope; 
 										$<tn>$=ast->createNode($<tn>2,0,ClsImpDefHdrNode);cout<<"class_implementation_definition_header:  PLUS	method_selector\n";}
 ;
 
 instance_implementation_definition:
 	instance_implementation_definition_header block_body	{
-		Scope* temp=s->currScope;
 		$<tn>$ = ast->createNode($<tn>1,$<tn>2,InsImpDefNode);
 		i=2;
 		$<r.str>$=$<r.str>1;
 		insert_param();
-		s->currScope=s->currScope->parent;
 		Type t=static_cast<Type>($<r.type>2);
+		Scope* temp=s->currScope;
+		s->currScope=s->currScope->parent;
 		if($<r.type>1==6){
 			if(s->insertFunctionInCurrentScope($<r.str>1,$<r.type1>1,param_list,$<tn>2,function_offset) == 0) 
 				Er->errQ->enqueue(yylval.r.myLineNo,yylval.r.myColno,"ERROR","Redefine Method");
@@ -772,9 +771,10 @@ instance_implementation_definition:
 			if(s->insertFunctionInCurrentScope($<r.str>1,t,param_list,$<tn>2,function_offset) == 0) 
 				Er->errQ->enqueue(yylval.r.myLineNo,yylval.r.myColno,"ERROR","Redefine Method");
 		}
+		s->insert_scope2($<r.str>1,temp);
+
 		param_list1.clear();
 		param_list.clear();
-		s->insert_scope($<r.str>1,s->currScope);
 		cout<<"instance_implementation_definition: instance_implementation_definition_header block_body\n";}	
 ;
 
@@ -794,6 +794,7 @@ instance_implementation_definition_header:
 												cout<<Interface_name<<endl;
 												cout<<main_interface<<endl;
 											}
+											Scope *new_scope = new Scope();new_scope->parent=s->currScope;s->currScope=new_scope; 
 											$<tn>$ = ast->createNode($<tn>2,0,InsImpDefHdrNode);cout<<"instance_implementation_definition_header:MINUS method_selector\n";}
 ;
 
