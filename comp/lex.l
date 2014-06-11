@@ -12,7 +12,7 @@ Identifier              [a-zA-Z_][a-zA-Z0-9_]*
 Integer					[1-9][0-9]*|0		
 Float					([+-]?[0-9]+"."[0-9]+["f"]?)|[0-9]["f"]?		
 Single_line_comment		(\/\/)+[^\n]*
-Symbol                  [!@#$^&?~]|["/"]|["\"]|["|"]
+Symbol                  [!#$^&?~]|["/"]|["\"]|["|"]
 %%
 
 
@@ -92,10 +92,13 @@ Symbol                  [!@#$^&?~]|["/"]|["\"]|["|"]
 "false"				{			column+=5;	yylval.r.myColno=column;						return FALSE;}
 "return"			{			column+=6;	yylval.r.myColno=column;							return RETURN;}
 \'[a-zA-z]\'		{			column+=1;	yylval.r.myColno=column;	return CHAR_VAL;}
-\".*\"				{			column+=strlen(yytext);;	yylval.r.myColno=column;				return STRING_VAL;}
-
-
-
+\".*\"				{			column += strlen(yytext);
+								yylval.r.str = new char[255];
+								yylval.r.str[0] = '\0';
+								strcpy(yylval.r.str, yytext);
+								yylval.r.myLineNo = row;
+								yylval.r.myColno = column;			return STRING_VAL;
+					}
 {Identifier}		{			column += strlen(yytext);
 								yylval.r.str = new char[255];
 								yylval.r.str[0] = '\0';
@@ -114,9 +117,11 @@ Symbol                  [!@#$^&?~]|["/"]|["\"]|["|"]
 								float f = atof(yytext);
 								return FLOAT_VAL;
 					}
+
 {Single_line_comment}		{
 								cout<<"\t"<<yytext<<':'<<" it is a Single Line Comment \n";
 							}
+
 {Symbol}			{column+=1;	yylval.r.myColno=column; ;return SYMBOL;}
 " "					{column+=1;	yylval.r.myColno=column; }
 "/*" {

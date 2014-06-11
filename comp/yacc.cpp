@@ -697,15 +697,15 @@ static const unsigned short int yyrline[] =
      811,   811,   812,   813,   817,   818,   821,   822,   823,   826,
      829,   833,   835,   837,   840,   846,   848,   850,   855,   860,
      863,   866,   869,   873,   878,   879,   880,   881,   882,   883,
-     884,   889,   890,   891,   892,   893,   894,   895,   896,   897,
-     900,   901,   904,   905,   906,   907,   908,   909,   910,   911,
-     912,   913,   914,   915,   920,   924,   927,   969,   972,  1006,
-    1007,  1008,  1009,  1010,  1011,  1012,  1013,  1014,  1015,  1016,
-    1017,  1020,  1022,  1023,  1027,  1031,  1032,  1033,  1034,  1037,
-    1039,  1040,  1043,  1046,  1047,  1048,  1049,  1050,  1059,  1063,
-    1064,  1065,  1070,  1071,  1075,  1076,  1079,  1080,  1081,  1082,
-    1085,  1088,  1089,  1092,  1093,  1096,  1097,  1100,  1101,  1102,
-    1103,  1104,  1106,  1112,  1123,  1126,  1129,  1132
+     884,   888,   889,   890,   891,   892,   893,   894,   895,   896,
+     899,   900,   903,   904,   905,   906,   907,   908,   909,   910,
+     911,   912,   913,   914,   919,   923,   926,   968,   971,  1005,
+    1006,  1007,  1008,  1009,  1010,  1011,  1012,  1013,  1014,  1015,
+    1016,  1019,  1021,  1022,  1026,  1030,  1031,  1032,  1033,  1036,
+    1038,  1039,  1043,  1046,  1047,  1048,  1049,  1050,  1053,  1057,
+    1058,  1059,  1064,  1065,  1069,  1070,  1073,  1074,  1075,  1076,
+    1079,  1082,  1083,  1086,  1087,  1090,  1091,  1094,  1095,  1096,
+    1097,  1098,  1100,  1106,  1117,  1120,  1123,  1126
 };
 #endif
 
@@ -3122,132 +3122,132 @@ yyreduce:
     break;
 
   case 171:
-#line 889 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
-    {(yyval.tn)=ast->createNode((yyvsp[-2].tn),(yyvsp[0].tn),LogExpNode);cout<<"logic_expr:expr LESS_THAN expr\n";;}
+#line 888 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+    {(yyval.tn)=ast->createNode((yyvsp[-2].tn),(yyvsp[0].tn),LESS_THAN_Node);cout<<"logic_expr:expr LESS_THAN expr\n";;}
     break;
 
   case 172:
-#line 890 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
-    {(yyval.tn)=ast->createNode((yyvsp[-2].tn),(yyvsp[0].tn),LogExpNode);cout<<"logic_expr:expr MORE_THAN expr\n";;}
+#line 889 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+    {(yyval.tn)=ast->createNode((yyvsp[-2].tn),(yyvsp[0].tn),MORE_THAN_Node);cout<<"logic_expr:expr MORE_THAN expr\n";;}
     break;
 
   case 173:
-#line 891 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
-    {(yyval.tn)=ast->createNode((yyvsp[-2].tn),(yyvsp[0].tn),LogExpNode);cout<<"logic_expr:expr LESS_OR_EQUAL expr\n";;}
+#line 890 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+    {(yyval.tn)=ast->createNode((yyvsp[-2].tn),(yyvsp[0].tn),LESS_EQUAL_Node);cout<<"logic_expr:expr LESS_OR_EQUAL expr\n";;}
     break;
 
   case 174:
-#line 892 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
-    {(yyval.tn)=ast->createNode((yyvsp[-2].tn),(yyvsp[0].tn),LogExpNode);cout<<"logic_expr:expr MORE_OR_EQUAL expr\n";;}
+#line 891 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+    {(yyval.tn)=ast->createNode((yyvsp[-2].tn),(yyvsp[0].tn),MORE_EQUAL_Node);cout<<"logic_expr:expr MORE_OR_EQUAL expr\n";;}
     break;
 
   case 175:
-#line 893 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
-    {(yyval.tn)=ast->createNode((yyvsp[-2].tn),(yyvsp[0].tn),LogExpNode);cout<<"logic_expr:expr EQUAL_EQUAL expr\n";;}
+#line 892 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+    {(yyval.tn)=ast->createNode((yyvsp[-2].tn),(yyvsp[0].tn),EQUAL_EQUAL_Node);cout<<"logic_expr:expr EQUAL_EQUAL expr\n";;}
     break;
 
   case 176:
-#line 894 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 893 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.tn)=ast->createNode((yyvsp[0].tn),0,LogExpNode);cout<<"logic_expr:NOT_EQUAL expr\n";;}
     break;
 
   case 177:
-#line 895 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 894 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.tn)=ast->createNode((yyvsp[-1].tn),0,LogExpNode);cout<<"logic_expr:OPEN_P logic_expr CLOSE_P\n";;}
     break;
 
   case 178:
-#line 896 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 895 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.tn)=ast->createNode((yyvsp[-2].tn),(yyvsp[0].tn),LogExpNode);cout<<"logic_expr:logic_expr AND_AND logic_expr\n";;}
     break;
 
   case 179:
-#line 897 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 896 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.tn)=ast->createNode((yyvsp[-2].tn),(yyvsp[0].tn),LogExpNode);cout<<"logic_expr:logic_expr OR_OR logic_expr\n";;}
     break;
 
   case 180:
-#line 900 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 899 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.tn)=(yyvsp[0].tn);cout<<"expr:assign_expr\n";	;}
     break;
 
   case 181:
-#line 901 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 900 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.tn)=(yyvsp[0].tn);cout<<"expr:simple_expr\n";	(yyval.tn)->expectedType=(yyvsp[0].tn)->expectedType;;}
     break;
 
   case 182:
-#line 904 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 903 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.tn)=ast->createNode((yyvsp[-2].tn),(yyvsp[0].tn),LogExpNode);cout<<"logic_expr:expr LESS_THAN expr\n";;}
     break;
 
   case 183:
-#line 905 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 904 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.tn)=ast->createNode((yyvsp[-2].tn),(yyvsp[0].tn),LogExpNode);cout<<"logic_expr:expr MORE_THAN expr\n";;}
     break;
 
   case 184:
-#line 906 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 905 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.tn)=ast->createNode((yyvsp[-2].tn),(yyvsp[0].tn),LogExpNode);cout<<"logic_expr:expr LESS_OR_EQUAL expr\n";;}
     break;
 
   case 185:
-#line 907 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 906 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.tn)=ast->createNode((yyvsp[-2].tn),(yyvsp[0].tn),LogExpNode);cout<<"logic_expr:expr MORE_OR_EQUAL expr\n";;}
     break;
 
   case 186:
-#line 908 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 907 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.tn)=ast->createNode((yyvsp[-2].tn),(yyvsp[0].tn),LogExpNode);cout<<"logic_expr:expr EQUAL_EQUAL expr\n";;}
     break;
 
   case 187:
-#line 909 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 908 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.tn)=ast->createNode((yyvsp[0].tn),0,LogExpNode);cout<<"logic_expr:NOT_EQUAL expr\n";;}
     break;
 
   case 188:
-#line 910 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 909 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.tn)=ast->createNode((yyvsp[-1].tn),0,LogExpNode);cout<<"logic_expr:OPEN_P logic_expr CLOSE_P\n";;}
     break;
 
   case 189:
-#line 911 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 910 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.tn)=ast->createNode((yyvsp[-2].tn),(yyvsp[0].tn),LogExpNode);cout<<"logic_expr:logic_expr AND_AND logic_expr\n";;}
     break;
 
   case 190:
-#line 912 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 911 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.tn)=ast->createNode((yyvsp[-2].tn),(yyvsp[0].tn),LogExpNode);cout<<"logic_expr:logic_expr OR_OR logic_expr\n";;}
     break;
 
   case 191:
-#line 913 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 912 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {Er->errQ->enqueue(yylval.r.myLineNo,yylval.r.myColno,"ERROR","LOGIC EXPR");;}
     break;
 
   case 192:
-#line 914 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 913 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {yyclearin;Er->errQ->enqueue(yylval.r.myLineNo,yylval.r.myColno,"ERROR",")");;}
     break;
 
   case 193:
-#line 915 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 914 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {Er->errQ->enqueue(yylval.r.myLineNo,yylval.r.myColno,"ERROR","(");;}
     break;
 
   case 194:
-#line 920 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 919 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.tn)=(yyvsp[0].tn);cout<<"expr:simple_expr\n";	(yyval.tn)->expectedType=(yyvsp[0].tn)->expectedType;;}
     break;
 
   case 195:
-#line 924 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 923 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.tn)=ast->createNode((yyvsp[-2].tn),(yyvsp[0].tn),AsgExpNode);cout<<"assign_expr:long_id EQUAL simple_expr\n";								;}
     break;
 
   case 196:
-#line 927 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 926 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {
 		TreeNode * temp=ast->createNode(0,0,IdentNode);
 		temp->complexType[0]='\0';	
@@ -3293,14 +3293,14 @@ yyreduce:
     break;
 
   case 197:
-#line 969 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 968 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {
 		(yyval.tn)=(yyvsp[0].tn);cout<<"long_id: long_id.message_call\n";
 	;}
     break;
 
   case 198:
-#line 972 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 971 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {
 		ignore=false;
 		(yyval.tn)=ast->createNode(0,0,IdentNode);
@@ -3336,119 +3336,120 @@ yyreduce:
     break;
 
   case 199:
-#line 1006 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
-    {(yyval.tn)=ast->createNode(0,0,stringNode);  (yyval.tn)->expectedType=stringtype; cout<<"simple_expr:STRING_VAL\n";(yyval.tn)->item=(void *)yylval.r.str;;}
+#line 1005 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+    {(yyval.tn)=ast->createNode(0,0,stringNode);  (yyval.tn)->expectedType=stringtype; cout<<"simple_expr:STRING_VAL\n"<<"hello"<<(yyvsp[0].r.str)<<"\n"; (yyval.tn)->item=(yyvsp[0].r.str);;}
     break;
 
   case 200:
-#line 1007 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1006 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.tn)=ast->createNode(0,0,intNode);	  (yyval.tn)->expectedType=inttype;   cout<<"simple_expr:INT_VAL\n"; (yyval.tn)->item=(void *)yylval.r.i;;}
     break;
 
   case 201:
-#line 1008 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1007 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.tn)=ast->createNode(0,0,floatNode);	  cout<<"simple_expr:FLOAT_VAL\n"; (yyval.tn)->expectedType=floattype;;}
     break;
 
   case 202:
-#line 1009 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1008 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.tn)=ast->createNode(0,0,CharNode);	  cout<<"simple_expr:CHAR_VAL\n";  cout<<"simple_expr:CHAR_VAL\n"; (yyval.tn)->expectedType=chartype; (yyval.tn)->item=(void *)yylval.r.c;;}
     break;
 
   case 203:
-#line 1010 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1009 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.tn)=(yyvsp[0].tn);							  cout<<"simple_expr:long_id\n";										;}
     break;
 
   case 204:
-#line 1011 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1010 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.tn)=ast->createNode((yyvsp[-2].tn),(yyvsp[0].tn),SmpExpPlusNode);cout<<"simple_expr:expr PLUS expr\n";			;}
     break;
 
   case 205:
-#line 1012 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1011 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.tn)=ast->createNode((yyvsp[-2].tn),(yyvsp[0].tn),SmpExpMinusNode);cout<<"simple_expr:expr MINUS expr\n";;}
     break;
 
   case 206:
-#line 1013 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1012 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.tn)=ast->createNode((yyvsp[-2].tn),(yyvsp[0].tn),SmpExpMultiNode);cout<<"simple_expr:expr MULTI expr\n";;}
     break;
 
   case 207:
-#line 1014 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1013 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.tn)=ast->createNode((yyvsp[-2].tn),(yyvsp[0].tn),SmpExpDivNode);cout<<"simple_expr:expr DIV expr\n";;}
     break;
 
   case 208:
-#line 1015 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1014 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.tn)=ast->createNode((yyvsp[-1].tn),0,SmpExpNode);cout<<"simple_expr:OPEN_P expr CLOSE_P\n";;}
     break;
 
   case 209:
-#line 1016 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1015 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.tn)=ast->createNode(0,0,SmpExpNode);cout<<"expr:p_type expr\n";;}
     break;
 
   case 210:
-#line 1017 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1016 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.tn)=(yyvsp[0].tn);		cout<<"method call"<<endl;;}
     break;
 
   case 211:
-#line 1020 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
-    {if(strcmp((yyvsp[-3].r.str),"NSLog")==0){(yyval.tn)=ast->createNode((yyvsp[-1].tn),0,NSLogNode);}    cout<<"IDENTIFIER OPEN_P simple_expr CLOSE_P"<<endl;;}
+#line 1019 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+    {if(strcmp((yyvsp[-3].r.str),"NSLog")==0){(yyval.tn)=ast->createNode((yyvsp[-1].tn),0,NSLogNode); }    cout<<"IDENTIFIER OPEN_P simple_expr CLOSE_P"<<endl;;}
     break;
 
   case 212:
-#line 1022 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1021 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.tn)=ast->createNode((yyvsp[-1].tn),0,BlockNode); cout<<"block_body:OPEN_S statement_list	CLOSE_S\n";;}
     break;
 
   case 213:
-#line 1023 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1022 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.tn)=ast->createNode(0,0,BlockNode);cout<<"block_body:OPEN_S CLOSE_S\n";;}
     break;
 
   case 214:
-#line 1027 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1026 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.tn)=ast->createNode((yyvsp[-1].tn),(yyvsp[0].tn),WhileNode);cout<<"while_loop:while_loop_header statement\n";;}
     break;
 
   case 215:
-#line 1031 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1030 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.tn)=ast->createNode((yyvsp[-1].tn),0,WleHdrNode);cout<<"while_loop_header: WHILE OPEN_P logic_expr CLOSE_P\n";;}
     break;
 
   case 216:
-#line 1032 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1031 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {yyclearin;Er->errQ->enqueue(yylval.r.myLineNo,yylval.r.myColno,"ERROR",")");;}
     break;
 
   case 217:
-#line 1033 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1032 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {Er->errQ->enqueue(yylval.r.myLineNo,yylval.r.myColno,"missing","(");;}
     break;
 
   case 218:
-#line 1034 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1033 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {Er->errQ->enqueue(yylval.r.myLineNo,yylval.r.myColno,"ERROR","(");;}
     break;
 
   case 219:
-#line 1037 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1036 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.tn)=ast->createNode((yyvsp[-2].tn),(yyvsp[-1].tn),DoWhlNode);cout<<"do_while_loop_header: DO statement while_loop_header SEMI_COMA\n";;}
     break;
 
   case 220:
-#line 1039 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
-    {(yyval.tn)=ast->createNode((yyvsp[-1].tn),(yyvsp[0].tn),CondtiNode);cout<<"conditional_statement: if_header statement\n";;}
+#line 1038 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+    {(yyval.tn)=ast->createNode((yyvsp[-1].tn),(yyvsp[0].tn),if_node);cout<<"conditional_statement: if_header statement\n";;}
     break;
 
   case 221:
-#line 1040 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1039 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {
-		(yyval.tn)=ast->createNode((yyvsp[-3].tn),(yyvsp[-2].tn),CondtiNode);
+		TreeNode *temp=ast->createNode((yyvsp[-2].tn),(yyvsp[0].tn),if_else_node);
+		(yyval.tn)=ast->createNode((yyvsp[-3].tn),temp,if_else_node);
 		cout<<"conditional_statement: if_header statement\n";;}
     break;
 
@@ -3483,7 +3484,7 @@ yyreduce:
     break;
 
   case 228:
-#line 1059 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1053 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {
 									(yyval.tn)=ast->createNode((yyvsp[-6].tn),ast->createNode((yyvsp[-3].tn),(yyvsp[0].tn),SwtBdyNode),SwtBdyNode);
 										
@@ -3491,122 +3492,122 @@ yyreduce:
     break;
 
   case 229:
-#line 1063 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1057 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {Er->errQ->enqueue(yylval.r.myLineNo,yylval.r.myColno,"missing","break");;}
     break;
 
   case 230:
-#line 1064 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1058 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.tn)=ast->createNode(0,(yyvsp[-2].tn),SwtBdyNode);cout<<"default statment";;}
     break;
 
   case 231:
-#line 1065 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1059 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {Er->errQ->enqueue(yylval.r.myLineNo,yylval.r.myColno,"missing","break");;}
     break;
 
   case 232:
-#line 1070 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1064 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.tn)=(yyvsp[0].tn);;}
     break;
 
   case 233:
-#line 1071 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1065 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.tn)=(yyvsp[0].tn);;}
     break;
 
   case 234:
-#line 1075 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1069 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.tn)=(yyvsp[0].tn);;}
     break;
 
   case 235:
-#line 1076 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1070 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.tn)=(yyvsp[0].tn);;}
     break;
 
   case 236:
-#line 1079 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
-    {(yyval.tn)=ast->createNode((yyvsp[-1].tn),0,IfHdrNode);cout<<"if_header: IF OPEN_P logic_expr CLOSE_P\n";;}
+#line 1073 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+    {(yyval.tn)=(yyvsp[-1].tn);cout<<"if_header: IF OPEN_P logic_expr CLOSE_P\n";;}
     break;
 
   case 237:
-#line 1080 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1074 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {yyclearin;Er->errQ->enqueue(yylval.r.myLineNo,yylval.r.myColno,"ERROR",")");;}
     break;
 
   case 238:
-#line 1081 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1075 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {Er->errQ->enqueue(yylval.r.myLineNo,yylval.r.myColno,"missing","(");;}
     break;
 
   case 239:
-#line 1082 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1076 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {Er->errQ->enqueue(yylval.r.myLineNo,yylval.r.myColno,"ERROR","(");;}
     break;
 
   case 240:
-#line 1085 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1079 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {if(strcmp((yyvsp[-1].r.str),"NSLog")) (yyval.tn) = ast->createNode((yyvsp[-1].tn),0,NSLogNode); else (yyval.tn)=ast->createNode((yyvsp[-2].tn),(yyvsp[-1].tn),MsgCalNode);cout<<"message_call: OPEN_ARR sender message CLOSE_ARR\n";;}
     break;
 
   case 241:
-#line 1088 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1082 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.tn) = ast->createNode((yyvsp[0].tn),0,SndrNode);cout<<"sender: message_call\n";;}
     break;
 
   case 242:
-#line 1089 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1083 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.tn) = ast->createNode(0,0,IdentNode); (yyval.tn)->item=(yyvsp[0].r.str);cout<<"sender: IDENTIFIER\n";;}
     break;
 
   case 243:
-#line 1092 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1086 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.tn) = ast->createNode(0,0,IdentNode); (yyval.tn)->item=(yyvsp[0].r.str);cout<<"message: IDENTIFIER\n";;}
     break;
 
   case 244:
-#line 1093 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1087 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.r.str)=(yyvsp[-2].r.str);(yyval.tn) = ast->createNode((yyvsp[0].tn),0,MsgNode); (yyval.tn)->item=(yyvsp[-2].r.str);cout<<"message: IDENTIFIER SEMI_COLUMN argument_list\n";;}
     break;
 
   case 245:
-#line 1096 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1090 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.tn) = ast->addToLastRight((yyvsp[-1].tn),ast->createNode((yyvsp[0].tn),0,argListNode));cout<<"argument_list: argument_list argument\n";;}
     break;
 
   case 246:
-#line 1097 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1091 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.tn) = ast->createNode((yyvsp[0].tn),0,argListNode);cout<<"argument_list: argument\n";;}
     break;
 
   case 247:
-#line 1100 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1094 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.tn) = (yyvsp[-1].tn); cout<<"argument: SEMI_COLUMN simple_expr\n";;}
     break;
 
   case 248:
-#line 1101 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1095 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {Er->errQ->enqueue(yylval.r.myLineNo,yylval.r.myColno,"ERROR",":");;}
     break;
 
   case 249:
-#line 1102 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1096 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.tn) = ast->createNode((yyvsp[0].tn),0,argNode);cout<<"argument: IDENTIFIER SEMI_COLUMN simple_expr\n";;}
     break;
 
   case 250:
-#line 1103 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1097 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {Er->errQ->enqueue(yylval.r.myLineNo,yylval.r.myColno,"missing",":");;}
     break;
 
   case 251:
-#line 1104 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1098 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {Er->errQ->enqueue(yylval.r.myLineNo,yylval.r.myColno,"ERROR",":");;}
     break;
 
   case 252:
-#line 1106 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1100 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {
 	(yyval.tn) = ast->createNode((yyvsp[-1].tn),(yyvsp[0].tn),ProtclNode);
 	s->insert_scope1((yyvsp[-1].r.str),s->currScope);s->currScope=s->currScope->parent;
@@ -3614,7 +3615,7 @@ yyreduce:
     break;
 
   case 253:
-#line 1112 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1106 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {
 		(yyval.tn) = ast->createNode(0,0,ProtclHdrNode);
 		(yyval.r.str)=(yyvsp[0].r.str);
@@ -3627,27 +3628,27 @@ yyreduce:
     break;
 
   case 254:
-#line 1124 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1118 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {(yyval.tn) = ast->createNode((yyvsp[-2].tn),(yyvsp[-1].tn),ProtclBdyNode);
 		cout<<"protocol_body: protocol_reference_list interface_declaration_list AT_END\n";;}
     break;
 
   case 255:
-#line 1126 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1120 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {
 		(yyval.tn) = ast->createNode((yyvsp[-1].tn),0,ProtclBdyNode);
 		cout<<"protocol_body: interface_declaration_list AT_END\n";;}
     break;
 
   case 256:
-#line 1129 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1123 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {
 		(yyval.tn) = ast->createNode((yyvsp[-1].tn),0,ProtclBdyNode);
 		cout<<"protocol_body: protocol_reference_list AT_END \n";;}
     break;
 
   case 257:
-#line 1132 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1126 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
     {
 		(yyval.tn) = ast->createNode(0,0,ProtclBdyNode);
 		cout<<"protocol_body:	AT_END\n";;}
@@ -3658,7 +3659,7 @@ yyreduce:
     }
 
 /* Line 1126 of yacc.c.  */
-#line 3662 "yacc.cpp"
+#line 3663 "yacc.cpp"
 
   yyvsp -= yylen;
   yyssp -= yylen;
@@ -3926,7 +3927,7 @@ yyreturn:
 }
 
 
-#line 1135 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
+#line 1129 "C:\\Users\\hossam\\Documents\\GitHub\\comp\\comp\\yacc.y"
 
 void yyerror(char *s) {
 	;

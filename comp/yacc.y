@@ -884,13 +884,12 @@ for_initializer:
 	|IDENTIFIER							{$<tn>$=ast->createNode(0,0,ForIniNode);cout<<"for_initializer: ID\n";}
 ;
 
-
 logic_expr:
-	 expr LESS_THAN expr				{$<tn>$=ast->createNode($<tn>1,$<tn>3,LogExpNode);cout<<"logic_expr:expr LESS_THAN expr\n";}
-	|expr MORE_THAN expr				{$<tn>$=ast->createNode($<tn>1,$<tn>3,LogExpNode);cout<<"logic_expr:expr MORE_THAN expr\n";}
-	|expr LESS_OR_EQUAL expr			{$<tn>$=ast->createNode($<tn>1,$<tn>3,LogExpNode);cout<<"logic_expr:expr LESS_OR_EQUAL expr\n";}
-	|expr MORE_OR_EQUAL expr			{$<tn>$=ast->createNode($<tn>1,$<tn>3,LogExpNode);cout<<"logic_expr:expr MORE_OR_EQUAL expr\n";}
-	|expr EQUAL_EQUAL expr				{$<tn>$=ast->createNode($<tn>1,$<tn>3,LogExpNode);cout<<"logic_expr:expr EQUAL_EQUAL expr\n";}
+	 expr LESS_THAN expr				{$<tn>$=ast->createNode($<tn>1,$<tn>3,LESS_THAN_Node);cout<<"logic_expr:expr LESS_THAN expr\n";}
+	|expr MORE_THAN expr				{$<tn>$=ast->createNode($<tn>1,$<tn>3,MORE_THAN_Node);cout<<"logic_expr:expr MORE_THAN expr\n";}
+	|expr LESS_OR_EQUAL expr			{$<tn>$=ast->createNode($<tn>1,$<tn>3,LESS_EQUAL_Node);cout<<"logic_expr:expr LESS_OR_EQUAL expr\n";}
+	|expr MORE_OR_EQUAL expr			{$<tn>$=ast->createNode($<tn>1,$<tn>3,MORE_EQUAL_Node);cout<<"logic_expr:expr MORE_OR_EQUAL expr\n";}
+	|expr EQUAL_EQUAL expr				{$<tn>$=ast->createNode($<tn>1,$<tn>3,EQUAL_EQUAL_Node);cout<<"logic_expr:expr EQUAL_EQUAL expr\n";}
 	|NOT_EQUAL expr						{$<tn>$=ast->createNode($<tn>2,0,LogExpNode);cout<<"logic_expr:NOT_EQUAL expr\n";}
 	|OPEN_P logic_expr CLOSE_P			{$<tn>$=ast->createNode($<tn>2,0,LogExpNode);cout<<"logic_expr:OPEN_P logic_expr CLOSE_P\n";}
 	|logic_expr AND_AND logic_expr		{$<tn>$=ast->createNode($<tn>1,$<tn>3,LogExpNode);cout<<"logic_expr:logic_expr AND_AND logic_expr\n";}
@@ -1003,7 +1002,7 @@ long_id:
 		cout<<"long_id:IDENTIFIER\n";}
 ;
 simple_expr:
-	STRING_VAL								{$<tn>$=ast->createNode(0,0,stringNode);  $<tn>$->expectedType=stringtype; cout<<"simple_expr:STRING_VAL\n";$<tn>$->item=(void *)yylval.r.str;}	
+	STRING_VAL								{$<tn>$=ast->createNode(0,0,stringNode);  $<tn>$->expectedType=stringtype; cout<<"simple_expr:STRING_VAL\n"<<"hello"<<$<r.str>1<<"\n"; $<tn>$->item=$<r.str>1;}	
 	|INT_VAL								{$<tn>$=ast->createNode(0,0,intNode);	  $<tn>$->expectedType=inttype;   cout<<"simple_expr:INT_VAL\n"; $<tn>$->item=(void *)yylval.r.i;}
 	|FLOAT_VAL								{$<tn>$=ast->createNode(0,0,floatNode);	  cout<<"simple_expr:FLOAT_VAL\n"; $<tn>$->expectedType=floattype;}
 	|CHAR_VAL								{$<tn>$=ast->createNode(0,0,CharNode);	  cout<<"simple_expr:CHAR_VAL\n";  cout<<"simple_expr:CHAR_VAL\n"; $<tn>$->expectedType=chartype; $<tn>$->item=(void *)yylval.r.c;}
@@ -1017,7 +1016,7 @@ simple_expr:
 	|method_call							{$<tn>$=$<tn>1;		cout<<"method call"<<endl;}
 ;
 method_call:
-	IDENTIFIER OPEN_P simple_expr CLOSE_P	{if(strcmp($<r.str>1,"NSLog")==0){$<tn>$=ast->createNode($<tn>3,0,NSLogNode);}    cout<<"IDENTIFIER OPEN_P simple_expr CLOSE_P"<<endl;}
+	IDENTIFIER OPEN_P simple_expr CLOSE_P	{if(strcmp($<r.str>1,"NSLog")==0){$<tn>$=ast->createNode($<tn>3,0,NSLogNode); }    cout<<"IDENTIFIER OPEN_P simple_expr CLOSE_P"<<endl;}
 block_body:
 	OPEN_S statement_list CLOSE_S			{$<tn>$=ast->createNode($<tn>2,0,BlockNode); cout<<"block_body:OPEN_S statement_list	CLOSE_S\n";}
 	|OPEN_S CLOSE_S							{$<tn>$=ast->createNode(0,0,BlockNode);cout<<"block_body:OPEN_S CLOSE_S\n";}
@@ -1036,9 +1035,10 @@ while_loop_header:
 do_while_loop:
 	DO statement while_loop_header SEMI_COMA	{$<tn>$=ast->createNode($<tn>2,$<tn>3,DoWhlNode);cout<<"do_while_loop_header: DO statement while_loop_header SEMI_COMA\n";}
 conditional_statement:
-	if_header statement		%prec if_h	{$<tn>$=ast->createNode($<tn>1,$<tn>2,CondtiNode);cout<<"conditional_statement: if_header statement\n";}
+	if_header statement		%prec if_h	{$<tn>$=ast->createNode($<tn>1,$<tn>2,if_node);cout<<"conditional_statement: if_header statement\n";}
 	|if_header statement ELSE statement		{
-		$<tn>$=ast->createNode($<tn>1,$<tn>2,CondtiNode);
+		TreeNode *temp=ast->createNode($<tn>2,$<tn>4,if_else_node);
+		$<tn>$=ast->createNode($<tn>1,temp,if_else_node);
 		cout<<"conditional_statement: if_header statement\n";}
 	|switch 					{$<tn>$=ast->createNode($<tn>1,0,CondtiNode);cout<<"conditional_statement: switch\n";}
 ;
@@ -1048,12 +1048,6 @@ switch:
 	|SWITCH OPEN_P switch_statement error OPEN_S switch_body CLOSE_S  {Er->errQ->enqueue(yylval.r.myLineNo,yylval.r.myColno,"ERROR",")");}
 	|SWITCH OPEN_P switch_statement CLOSE_P OPEN_S switch_body error  {yyclearin;Er->errQ->enqueue(yylval.r.myLineNo,yylval.r.myColno,"ERROR","}");}
 	|SWITCH OPEN_P switch_statement CLOSE_P error switch_body CLOSE_S  {Er->errQ->enqueue(yylval.r.myLineNo,yylval.r.myColno,"ERROR","{");}
-
-
-
-	
-
-
 
 switch_body:
 CASE OPEN_P case_statement CLOSE_P SEMI_COLUMN statement BREAK SEMI_COMA switch_body {
@@ -1076,7 +1070,7 @@ logic_expr2  						{$<tn>$=$<tn>1;}
 |expr2       						{$<tn>$=$<tn>1;}
 ;
 if_header:
-	IF OPEN_P logic_expr CLOSE_P		{$<tn>$=ast->createNode($<tn>3,0,IfHdrNode);cout<<"if_header: IF OPEN_P logic_expr CLOSE_P\n";}
+	IF OPEN_P logic_expr CLOSE_P		{$<tn>$=$<tn>3;cout<<"if_header: IF OPEN_P logic_expr CLOSE_P\n";}
 	|IF OPEN_P logic_expr error			{yyclearin;Er->errQ->enqueue(yylval.r.myLineNo,yylval.r.myColno,"ERROR",")");}
 	|IF  logic_expr CLOSE_P				{Er->errQ->enqueue(yylval.r.myLineNo,yylval.r.myColno,"missing","(");}
 	|IF error logic_expr CLOSE_P		{Er->errQ->enqueue(yylval.r.myLineNo,yylval.r.myColno,"ERROR","(");}

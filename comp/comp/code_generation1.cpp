@@ -12,6 +12,7 @@ code_generation1::code_generation1(string main)
 	myfile.open ("test.s");
 	myfile <<"\t.data\n\t.text\n \n";
 	myfile <<".globl main \n";
+	string_num=0;
 }
 void code_generation1::end()
 {
@@ -73,6 +74,16 @@ void code_generation1::generate_method_call(TreeNode *tn){
 		generate_sender(tn->left);
 	myfile<<"j "<<tn->left->complexType<<"."<<(char*)tn->right->item<<"\n";
 }
+void code_generation1::generate_string(char* s){
+	string_num++;
+	if(s[0]=='"'){
+		s++;
+		s[strlen(s)-1]='\0';
+	}
+	myfile<<".data \n"; 
+	myfile<<"_string"<<to_string(string_num)<<": .asciiz \" "<<s<<"\"  \n" ;
+	myfile<<".text \n ";
+}
 void code_generation1::generate_method(TreeNode *tn,Scope *scope,char* method_name){
 	this->curr_st=scope;
 	int size=get_method_size(this->curr_class_name,method_name);
@@ -89,11 +100,9 @@ void code_generation1::generate_method(TreeNode *tn,Scope *scope,char* method_na
 		generate_stmt_list(tn->left);
 	if(strcmp(method_name,"main")==0)
 	{
-		myfile<<".data \n"; 
-		myfile<<"_string1: .asciiz \"press any key to continue.. \" "<<"  \n" ;
-		myfile<<".text \n ";
+		generate_string("press enter to continue...");
 		myfile<<"li  $v0,4 \n";
-		myfile<<"la $a0, _string1 \n";
+		myfile<<"la $a0, _string"<<to_string(string_num)<<"\n";
 		myfile<<"syscall \n";
 		myfile<<"li $v0, 8 \n";
 		myfile<<"syscall \n";
@@ -125,8 +134,12 @@ void code_generation1::generate_code(Scope *st)
 		if(temp_Implementaion){
 			temp_Implementaion=(Implementation*)st->m->table[i]->symbol;
 			string  s=string(temp_Implementaion->getName());
-			if(s[s.length()-1]=='#')
-				generate_class(temp_Implementaion->getName(),temp_Implementaion->getScope());
+			if(s[s.length()-1]=='#'){
+				char class_name[50]={'\0'};
+				strcat(class_name,temp_Implementaion->getName());
+				class_name[s.length()-1]='\0';
+				generate_class(class_name,temp_Implementaion->getScope());
+			}
 		}
 	}
 }
@@ -170,20 +183,19 @@ void code_generation1::generate_argument_list(TreeNode *tn)
 }
 void code_generation1::generate_if(TreeNode *tn)
 {
-	tn->nodeType;
 	generate_logic_expr_code(tn->left);
-	myfile<<"beq $t0,$1,if_label"<< std::endl;
-	myfile<<"jmp end_if"<< std::endl;
+	myfile<<"beq $t0,1,if_label"<< std::endl;
+	myfile<<"j end_if"<< std::endl;
 	myfile<<"if_label:"<< std::endl;
-	generate_stmt_list(tn->right);
+	generate_stmt_code(tn->right);
 	myfile<<"end_if:"<< std::endl;
 }
 void code_generation1::generate_if_else(TreeNode *tn)
 {
 	generate_logic_expr_code(tn->left);
-	myfile<<"beq $t0,$1,if_label"<< std::endl;
+	myfile<<"beq $t0,1,if_label"<< std::endl;
 	generate_stmt_code(tn->right->right);
-	myfile<<"jmp end_if"<< std::endl;
+	myfile<<"j end_if"<< std::endl;
 	myfile<<"if_label:"<< std::endl;
 	generate_stmt_code(tn->right->left);
 	myfile<<"end_if:"<< std::endl;
@@ -234,10 +246,10 @@ void code_generation1::generate_stmt_code(TreeNode * tn)
 {
 	switch(tn->nodeType)
 	{
-		case if_Node:
+		case if_node:
 			generate_if(tn);
 			break;
-		case if_else_Node:
+		case if_else_node:
 			generate_if_else(tn);
 			break;
 		case WhileNode:
@@ -267,46 +279,52 @@ void code_generation1::generate_stmt_code(TreeNode * tn)
 }
 void code_generation1::generate_logic_expr_code(TreeNode * tn)
 {
-
 	switch(tn->nodeType)
 	{
-		case LESS_THAN_Node:
-			generate_logic_expr_code(tn->left);
+		case EQUAL_EQUAL_Node:
+			generate_expr_code(tn->left);
 			store_value();
 			decrease_sp();
-			generate_logic_expr_code(tn->right);
+			generate_expr_code(tn->right);
 			load_value();
-			myfile << "slt $t0, $t0, $t1" << std::endl;
+			myfile << "seq $t0, $t0, $t1" << std::endl;
+			increase_sp();
+			break;
+		case LESS_THAN_Node:
+			generate_expr_code(tn->left);
+			store_value();
+			decrease_sp();
+			generate_expr_code(tn->right);
+			load_value();
+			myfile << "slt $t0, $t1, $t0" << std::endl;
 			increase_sp();
 			break;
 		case MORE_THAN_Node:
-			generate_logic_expr_code(tn->left);
+			generate_expr_code(tn->left);
 			store_value();
 			decrease_sp();
-			generate_logic_expr_code(tn->right);
+			generate_expr_code(tn->right);
 			load_value();
-			myfile << "slt $t0, $t1, $t0" << std::endl; 
+			myfile << "slt $t0, $t0, $t1" << std::endl; 
 			increase_sp();
 			break;
 		case LESS_EQUAL_Node:
-			generate_logic_expr_code(tn->left);
+			generate_expr_code(tn->left);
 			store_value();
 			decrease_sp();
-			generate_logic_expr_code(tn->right);
+			generate_expr_code(tn->right);
 			load_value();
 			myfile << "slt $t0, $t1, $t0" << std::endl;
-            myfile << "xori $t0, 1" << std::endl;
 			increase_sp();
 			break;
 		case MORE_EQUAL_Node:
-			generate_logic_expr_code(tn->left);
+			generate_expr_code(tn->left);
 			store_value();
 			decrease_sp();
-			generate_logic_expr_code(tn->right);
+			generate_expr_code(tn->right);
 			load_value();
-			 myfile << "slt $t0, $t0, $t1" << std::endl;
-             myfile << "xori $t0, 1" << std::endl;
-			 increase_sp();
+			myfile << "slt $t0, $t0, $t1" << std::endl;
+			increase_sp();
 			break;
 	}
 }
@@ -318,6 +336,10 @@ void code_generation1::generate_expr_code(TreeNode *tn)
 			generate_NSLog(tn);
 		case intNode:
 			myfile <<"li $t0,"<<std::to_string((int)tn->item)<<"\n";
+			break;
+		case stringNode:
+			generate_string((char*)tn->item);
+			myfile <<"la $t0,_string"<<to_string(string_num)<<" \n";
 			break;
 		case SmpExpPlusNode:
 			generate_expr_code(tn->left);
@@ -466,25 +488,30 @@ void code_generation1::search_in_classes(TreeNode *tn){
 void code_generation1::generate_NSLog(TreeNode* tn){
 	generate_expr_code(tn->left);
 	if(tn->left->expectedType==1){			//check if type of variable is int
-		myfile<<"li  $v0, 1 \n";
-		myfile<<"move $a0, $t0 \n";
+		myfile<<"li  $v0,1 \n";
+		myfile<<"move $a0,$t0 \n";
 		myfile<<"syscall \n";
 	}
 	else if(tn->left->expectedType==2){    //check if type of variable is float
-		myfile<<"li  $v0, 2 \n";
-		myfile<<"move $a0, $t0 \n";
+		myfile<<"li  $v0,2 \n";
+		myfile<<"move $a0,$t0 \n";
 		myfile<<"syscall \n";
 	}
 	else if(tn->left->expectedType==3){   //check if type of variable is string
-		myfile<<"li  $v0, 4 \n";
-		myfile<<"move $a0, $t0 \n";
+		myfile<<"li  $v0,4 \n";
+		myfile<<"move $a0,$t0 \n";
+		myfile<<"syscall \n";
+	}
+	else{
+		myfile<<"li  $v0,1 \n";
+		myfile<<"move $a0,$t0 \n";
 		myfile<<"syscall \n";
 	}
 }
 void code_generation1::generate_read_int(TreeNode *tn){
-	myfile<<"li $v0, 5 \n";
+	myfile<<"li $v0,5 \n";
 	myfile<<"syscall \n";
-	myfile<<"move $t2, $v0 \n";
+	myfile<<"move $t2,$v0 \n";
 }
 
 

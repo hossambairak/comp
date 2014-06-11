@@ -11,9 +11,11 @@ public:
 	Scope *curr_st;
 	char* curr_class_name;
 	std::ofstream myfile;
+	int string_num;
 	code_generation1(string main);
 	void generate_code(Scope *st);
 	void end();
+	void generate_string(char* s);
 	void generate_new(char *class_name);
 	void generate_id(TreeNode *tn);
 	void generate_left_assigment(TreeNode *tn);
